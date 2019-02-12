@@ -200,13 +200,10 @@ io.on("connection", socket => {
       element => element.id === data.id && element.title === data.title
     );
 
+    console.log(products);
+
     if (element) {
-      for (let index = 0; index < products.length; ++index) {
-        if (products[index].order === element.id) {
-          console.log(index);
-          products.splice(index, 1);
-        }
-      }
+      products = products.filter(value => value.order != element.id);
 
       var index = orders.indexOf(element);
       orders.splice(index, 1);
