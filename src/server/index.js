@@ -205,10 +205,17 @@ io.on("connection", socket => {
       orders.splice(index, 1);
     }
 
+    for(let index = 0; index < products.length; ++index) {
+      if(products.order === data.id) {
+        products.splice(index, 0)
+      }
+    }
+    
     socket.emit("ordersAndProducts", {
       orders,
       products
     });
+
   });
 
   socket.on("deleteProduct", data => {
