@@ -88,6 +88,82 @@ var products = [
     ],
     order: 1,
     date: "2017-06-29 12:09:33"
+  },
+  {
+    id: 4,
+    serialNumber: 12347,
+    isNew: 0,
+    photo: "product3.jpg",
+    title: "Product 1",
+    type: "Monitors",
+    specification: "Specification 1",
+    guarantee: {
+      start: "2017-06-29 12:09:33",
+      end: "2017-06-29 12:09:33"
+    },
+    price: [
+      { value: 100, symbol: "USD", isDefault: 0 },
+      { value: 2600, symbol: "UAH", isDefault: 1 }
+    ],
+    order: 1,
+    date: "2017-06-29 12:09:33"
+  },
+  {
+    id: 5,
+    serialNumber: 12348,
+    isNew: 0,
+    photo: "product3.jpg",
+    title: "Product 1",
+    type: "Monitors",
+    specification: "Specification 2",
+    guarantee: {
+      start: "2017-06-29 12:09:33",
+      end: "2017-06-29 12:09:33"
+    },
+    price: [
+      { value: 100, symbol: "USD", isDefault: 0 },
+      { value: 2600, symbol: "UAH", isDefault: 1 }
+    ],
+    order: 1,
+    date: "2017-06-29 12:09:33"
+  },
+  {
+    id: 6,
+    serialNumber: 12349,
+    isNew: 0,
+    photo: "product1.jpg",
+    title: "Product 1",
+    type: "MonitorsA",
+    specification: "Specification 1",
+    guarantee: {
+      start: "2017-06-29 12:09:33",
+      end: "2017-06-29 12:09:33"
+    },
+    price: [
+      { value: 100, symbol: "USD", isDefault: 1 },
+      { value: 2600, symbol: "UAH", isDefault: 0 }
+    ],
+    order: 3,
+    date: "2017-06-29 12:09:33"
+  },
+  {
+    id: 7,
+    serialNumber: 12304,
+    isNew: 1,
+    photo: "product3.jpg",
+    title: "Product 1",
+    type: "Monitors",
+    specification: "Specification 1",
+    guarantee: {
+      start: "2017-06-29 12:09:33",
+      end: "2017-06-29 12:09:33"
+    },
+    price: [
+      { value: 100, symbol: "USD", isDefault: 1 },
+      { value: 2600, symbol: "UAH", isDefault: 0 }
+    ],
+    order: 3,
+    date: "2017-06-29 12:09:33"
   }
 ];
 
@@ -129,16 +205,17 @@ io.on("connection", socket => {
       orders.splice(index, 1);
     }
 
-    for (let index = 0; index < products.length; ++index) {
-      if (products.order === data.id) {
-        products.splice(index, 0);
+    for(let index = 0; index < products.length; ++index) {
+      if(products.order === data.id) {
+        products[index].splice(index, 1)
       }
     }
-
+    
     socket.emit("ordersAndProducts", {
       orders,
       products
     });
+
   });
 
   socket.on("deleteProduct", data => {
