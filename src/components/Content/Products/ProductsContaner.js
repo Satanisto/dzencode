@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import {
   setAPI,
   toggleState,
-  changeActiveParish,
+  changeActiveOrder,
   changeActiveProduct,
   setSearchValuesType,
   setSearchValuesSpecification
@@ -18,14 +18,14 @@ class ProductsContainer extends Component {
       <div>
         <Products
           data={this.props.data}
-          activeParish={this.props.activeParish}
+          activeOrder={this.props.activeOrder}
           activeProduct={this.props.activeProduct}
           stateOfInterface={this.props.stateOfInterface}
           type={this.props.type}
           specification={this.props.specification}
           setAPI={this.props.setAPI}
           toggleState={this.props.toggleState}
-          changeActiveParish={this.props.changeActiveParish}
+          changeActiveOrder={this.props.changeActiveOrder}
           changeActiveProduct={this.props.changeActiveProduct}
           setSearchValuesType={this.props.setSearchValuesType}
           setSearchValuesSpecification={this.props.setSearchValuesSpecification}
@@ -38,7 +38,7 @@ class ProductsContainer extends Component {
 const mapStateToProps = state => ({
   data: state.content.data,
   stateOfInterface: state.content.stateOfInterface,
-  activeParish: state.content.activeParish,
+  activeOrder: state.content.activeOrder,
   activeProduct: state.content.activeProduct,
   type: state.content.type,
   specification: state.content.specification
@@ -47,7 +47,7 @@ const mapStateToProps = state => ({
 const mapDispatchesToProps = {
   setAPI,
   toggleState,
-  changeActiveParish,
+  changeActiveOrder,
   changeActiveProduct,
   setSearchValuesType,
   setSearchValuesSpecification

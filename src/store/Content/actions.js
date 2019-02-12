@@ -1,6 +1,6 @@
 export const SET_API = "SET_API";
 export const TOGGLE_STATE = "TOGGLE_STATE";
-export const CHANGE_ACTIVE_PARISH = "CHANGE_ACTIVE_PARISH";
+export const CHANGE_ACTIVE_ORDER = "CHANGE_ACTIVE_ORDER";
 export const CHANGE_ACTIVE_PRODUCT = "CHANGE_ACTIVE_PRODUCT";
 export const SET_SEARCH_VALUES_TYPE = "SET_SEARCH_VALUES_TYPE";
 export const SET_SEARCH_VALUES_SPECIFICATION =
@@ -16,8 +16,8 @@ export const toggleState = data => ({
   payload: data
 });
 
-export const changeActiveParish = data => ({
-  type: CHANGE_ACTIVE_PARISH,
+export const changeActiveOrder = data => ({
+  type: CHANGE_ACTIVE_ORDER,
   payload: data
 });
 

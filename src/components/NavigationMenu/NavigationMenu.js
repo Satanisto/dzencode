@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
-export default class Aside extends Component {
+export default class NavigationMenu extends Component {
   render() {
     return (
-      <div className="aside">
+      <div className="NavigationMenu">
         <div className="img-settings">
           <img src="./img/face.jpeg" alt="face" />
           <div className="settings">

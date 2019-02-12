@@ -1,26 +1,26 @@
 import React, { Component } from "react";
-import Parishes from "./Parishes";
+import Orders from "./Orders";
 import { connect } from "react-redux";
 
 import {
   setAPI,
   toggleState,
-  changeActiveParish,
+  changeActiveOrder,
   changeActiveProduct
 } from "../../../store/Content/actions";
 
-class ParishesContainer extends Component {
+class OrdersContainer extends Component {
   render() {
     return (
       <div>
-        <Parishes
+        <Orders
           data={this.props.data}
-          activeParish={this.props.activeParish}
+          activeOrder={this.props.activeOrder}
           activeProduct={this.props.activeProduct}
           stateOfInterface={this.props.stateOfInterface}
           setAPI={this.props.setAPI}
           toggleState={this.props.toggleState}
-          changeActiveParish={this.props.changeActiveParish}
+          changeActiveOrder={this.props.changeActiveOrder}
           changeActiveProduct={this.props.changeActiveProduct}
         />
       </div>
@@ -32,7 +32,7 @@ const mapStateToProps = state => {
   return {
     data: state.content.data,
     stateOfInterface: state.content.stateOfInterface,
-    activeParish: state.content.activeParish,
+    activeOrder: state.content.activeOrder,
     activeProduct: state.content.activeProduct
   };
 };
@@ -40,11 +40,11 @@ const mapStateToProps = state => {
 const mapDispatchesToProps = {
   setAPI,
   toggleState,
-  changeActiveParish,
+  changeActiveOrder,
   changeActiveProduct
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchesToProps
-)(ParishesContainer);
+)(OrdersContainer);

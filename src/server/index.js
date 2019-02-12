@@ -200,8 +200,6 @@ io.on("connection", socket => {
       element => element.id === data.id && element.title === data.title
     );
 
-    console.log(products);
-
     if (element) {
       products = products.filter(value => value.order != element.id);
 

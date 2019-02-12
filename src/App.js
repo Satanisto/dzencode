@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import HeaderContainer from "./components/Header/HeaderContainer";
-import Aside from "./components/Aside/Aside";
+import TopMenuContainer from "./components/TopMenu/TopMenuContainer";
+import NavigationMenu from "./components/NavigationMenu/NavigationMenu";
 import Content from "./components/Content/Content";
 import rootReducer from "./store/reducers";
 import Socket from "./components/Socket";
@@ -21,9 +21,9 @@ export default class App extends Component {
     return (
       <Provider store={store}>
         <div className="content-wrapper">
-          <HeaderContainer />
+          <TopMenuContainer />
           <div className="main-wrapper">
-            <Aside />
+            <NavigationMenu />
             <Content />
           </div>
         </div>

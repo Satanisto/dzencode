@@ -3,7 +3,7 @@ import Socket from "../Socket";
 
 import DateFormatting from "../DateFormatting";
 
-export default class Header extends Component {
+export default class TopMenu extends Component {
   componentWillMount() {
     Socket.on("date", data => {
       const date = DateFormatting(data.date);
@@ -25,7 +25,7 @@ export default class Header extends Component {
 
   render() {
     return (
-      <div className="header">
+      <div className="TopMenu">
         <div className="left">
           <div className="icon-name">
             <img src="./img/person.svg" alt="person" />

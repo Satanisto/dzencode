@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import Header from "./Header";
-import { setDate, changeActiveUsers } from "../../store/Header/actions";
+import TopMenu from "./TopMenu";
+import { setDate, changeActiveUsers } from "../../store/TopMenu/actions";
 
-class HeaderCotainer extends Component {
+class TopMenuCotainer extends Component {
   render() {
     return (
       <div>
-        <Header
+        <TopMenu
           date={this.props.date}
           active_users={this.props.active_users}
           setDate={this.props.setDate}
@@ -21,8 +21,8 @@ class HeaderCotainer extends Component {
 
 const mapStateToProps = state => {
   return {
-    date: state.header.date,
-    active_users: state.header.active_users
+    date: state.topmenu.date,
+    active_users: state.topmenu.active_users
   };
 };
 
@@ -34,4 +34,4 @@ const mapDispatchToProps = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(HeaderCotainer);
+)(TopMenuCotainer);

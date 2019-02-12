@@ -1,7 +1,7 @@
 import {
   SET_API,
   TOGGLE_STATE,
-  CHANGE_ACTIVE_PARISH,
+  CHANGE_ACTIVE_ORDER,
   CHANGE_ACTIVE_PRODUCT,
   SET_SEARCH_VALUES_TYPE,
   SET_SEARCH_VALUES_SPECIFICATION
@@ -10,7 +10,7 @@ import {
 const defaultState = {
   data: {},
   stateOfInterface: "DEFAULT",
-  activeParish: {},
+  activeOrder: {},
   activeProduct: {},
   type: "",
   specification: ""
@@ -30,10 +30,10 @@ export const contentReduser = (state = defaultState, action) => {
         stateOfInterface: action.payload
       };
     }
-    case CHANGE_ACTIVE_PARISH: {
+    case CHANGE_ACTIVE_ORDER: {
       return {
         ...state,
-        activeParish: action.payload
+        activeOrder: action.payload
       };
     }
     case CHANGE_ACTIVE_PRODUCT: {

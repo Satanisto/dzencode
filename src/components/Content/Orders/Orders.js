@@ -4,13 +4,13 @@ import Socket from "../../Socket";
 import DateFormatting from "../../DateFormatting";
 
 const stateOfInterface = {
-  DELETE_PARISH: "DELETE_PARISH",
+  DELETE_ORDER: "DELETE_ORDER",
   DELETE_PRODUCT: "DELETE_PRODUCT",
-  PRODUCTS_OF_PARISH: "PRODUCTS_OF_PARISH",
+  PRODUCTS_OF_ORDER: "PRODUCTS_OF_ORDER",
   DEFAULT: "DEFAULT"
 };
 
-export default class Parishes extends Component {
+export default class Orders extends Component {
   componentWillMount() {
     Socket.on("ordersAndProducts", data => {
       this.props.setAPI(data);
@@ -21,12 +21,12 @@ export default class Parishes extends Component {
     }, 5000);
   }
 
-  renderDeleteParish() {
+  renderDeleteOrder() {
     if (
-      this.props.stateOfInterface === stateOfInterface.DELETE_PARISH &&
-      this.props.activeParish
+      this.props.stateOfInterface === stateOfInterface.DELETE_ORDER &&
+      this.props.activeOrder
     ) {
-      const parish = this.props.activeParish;
+      const Order = this.props.activeOrder;
       const products = this.props.data.products;
 
       return (
@@ -43,7 +43,7 @@ export default class Parishes extends Component {
             </div>
             <div className="pop-up__products-wrapper">
               {products
-                .filter(value => parish.id === value.order)
+                .filter(value => Order.id === value.order)
                 .map((value, index) => (
                   <div className="pop-up__product" key={index}>
                     <div className="pop-up__state__foto">
@@ -77,7 +77,7 @@ export default class Parishes extends Component {
                 className="pop-up__delete"
                 onClick={() => {
                   this.props.toggleState(stateOfInterface.DEFAULT);
-                  Socket.emit("deleteOrder", parish);
+                  Socket.emit("deleteOrder", Order);
                 }}
               >
                 <img src="./img/delete-red.svg" alt="delete" /> Удалить
@@ -89,25 +89,25 @@ export default class Parishes extends Component {
     }
   }
 
-  renderParishes() {
+  renderOrders() {
     const { data } = this.props;
 
     if (data.orders && data.products) {
       const orders = data.orders;
       const products = data.products;
 
-      return orders.map((parish, index) => {
-        const date = DateFormatting(new Date(parish.date));
+      return orders.map((Order, index) => {
+        const date = DateFormatting(new Date(Order.date));
         const contextProducts = products.filter(
-          product => product.order === parish.id
+          product => product.order === Order.id
         );
         const amount = contextProducts.length;
 
         const ordersIndex = orders.indexOf(
           orders.find(value => {
             return (
-              value.id === this.props.activeParish.id &&
-              value.title === this.props.activeParish.title
+              value.id === this.props.activeOrder.id &&
+              value.title === this.props.activeOrder.title
             );
           })
         );
@@ -138,18 +138,18 @@ export default class Parishes extends Component {
         }, 0);
 
         return (
-          <div key={index} className="item parishes">
+          <div key={index} className="item Orders">
             {this.props.stateOfInterface !==
-            stateOfInterface.PRODUCTS_OF_PARISH ? (
-              <div className="name">{parish.title}</div>
+            stateOfInterface.PRODUCTS_OF_ORDER ? (
+              <div className="name">{Order.title}</div>
             ) : (
               ""
             )}
             <div className="icon-more_amount-of-products">
               <button
                 onClick={() => {
-                  this.props.changeActiveParish(parish);
-                  this.props.toggleState(stateOfInterface.PRODUCTS_OF_PARISH);
+                  this.props.changeActiveOrder(Order);
+                  this.props.toggleState(stateOfInterface.PRODUCTS_OF_ORDER);
                 }}
               >
                 <img src="./img/list.svg" alt="list" />
@@ -177,7 +177,7 @@ export default class Parishes extends Component {
               </div>
             </div>
             {this.props.stateOfInterface !==
-            stateOfInterface.PRODUCTS_OF_PARISH ? (
+            stateOfInterface.PRODUCTS_OF_ORDER ? (
               <div className="full-price">
                 {price.USD > 0 ? (
                   <div
@@ -208,12 +208,12 @@ export default class Parishes extends Component {
               ""
             )}
             {this.props.stateOfInterface !==
-            stateOfInterface.PRODUCTS_OF_PARISH ? (
+            stateOfInterface.PRODUCTS_OF_ORDER ? (
               <div className="delete-btn">
                 <button
                   onClick={() => {
-                    this.props.toggleState(stateOfInterface.DELETE_PARISH);
-                    this.props.changeActiveParish(parish);
+                    this.props.toggleState(stateOfInterface.DELETE_ORDER);
+                    this.props.changeActiveOrder(Order);
                   }}
                 >
                   <img src="./img/delete.svg" alt="delete" />
@@ -223,7 +223,7 @@ export default class Parishes extends Component {
               ""
             )}
             {this.props.stateOfInterface ===
-              stateOfInterface.PRODUCTS_OF_PARISH && index === ordersIndex ? (
+              stateOfInterface.PRODUCTS_OF_ORDER && index === ordersIndex ? (
               <div className="products-arrow">
                 <img src="./img/arrow.svg" alt="arrow" />
               </div>
@@ -242,9 +242,9 @@ export default class Parishes extends Component {
     if (
       data.orders &&
       data.products &&
-      this.props.stateOfInterface === stateOfInterface.PRODUCTS_OF_PARISH
+      this.props.stateOfInterface === stateOfInterface.PRODUCTS_OF_ORDER
     ) {
-      const order = this.props.activeParish;
+      const order = this.props.activeOrder;
       const products = data.products.filter(value => order.id === value.order);
 
       return (
@@ -304,8 +304,8 @@ export default class Parishes extends Component {
 
   render() {
     return (
-      <div className="content-container parishes">
-        {this.renderDeleteParish()}
+      <div className="content-container Orders">
+        {this.renderDeleteOrder()}
         <div className="content-name">
           <button className="add">
             <span>+</span>
@@ -315,14 +315,14 @@ export default class Parishes extends Component {
         <div className="content-wrapper">
           <div
             className={
-              "items-wrapper parishes-wrapper " +
+              "items-wrapper Orders-wrapper " +
               (this.props.stateOfInterface ===
-              stateOfInterface.PRODUCTS_OF_PARISH
+              stateOfInterface.PRODUCTS_OF_ORDER
                 ? "deployed"
                 : "")
             }
           >
-            {this.renderParishes()}
+            {this.renderOrders()}
           </div>
           {this.renderProducts()}
         </div>
