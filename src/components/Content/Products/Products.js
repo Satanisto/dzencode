@@ -153,7 +153,9 @@ export default class Products extends Component {
             </div>
             <div className="name-of-type">{value.type}</div>
             <div className="name-of-order">
-              {orders.find(order => value.order === order.id).title}
+              {orders.find(order => value.order === order.id)
+                ? orders.find(order => value.order === order.id).title
+                : ""}
             </div>
             <div className="products-wrapper__delete-btn">
               <button

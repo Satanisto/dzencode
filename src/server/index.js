@@ -201,14 +201,15 @@ io.on("connection", socket => {
     );
 
     if (element) {
+      for (let index = 0; index < products.length; ++index) {
+        if (products[index].order === element.id) {
+          console.log(index);
+          products.splice(index, 1);
+        }
+      }
+
       var index = orders.indexOf(element);
       orders.splice(index, 1);
-    }
-
-    for (let index = 0; index < products.length; ++index) {
-      if (products[index].order === data.id) {
-        products.splice(index, 1);
-      }
     }
 
     socket.emit("ordersAndProducts", {
