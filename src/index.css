@@ -299,6 +299,10 @@ h6 {
   width: 50%;
 }
 
+.items-wrapper.deployed .item {
+  padding-right: 44px;
+}
+
 .parishes-wrapper.deployed .parishes {
   padding-right: 54px;
 }
