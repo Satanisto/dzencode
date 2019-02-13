@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import TopMenuContainer from "./components/TopMenu/TopMenuContainer";
+import TopMenu from "./components/TopMenu/TopMenu";
 import NavigationMenu from "./components/NavigationMenu/NavigationMenu";
 import Content from "./components/Content/Content";
 import rootReducer from "./store/reducers";
@@ -21,7 +21,7 @@ export default class App extends Component {
     return (
       <Provider store={store}>
         <div className="content-wrapper">
-          <TopMenuContainer />
+          <TopMenu />
           <div className="main-wrapper">
             <NavigationMenu />
             <Content />
