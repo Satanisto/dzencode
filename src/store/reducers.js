@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { headerReducer } from "./Header/reducers";
+import { headerReducer } from "./TopMenu/reducers";
 import { contentReduser } from "./Content/reducers";
 
 export default combineReducers({
